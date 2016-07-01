@@ -291,7 +291,7 @@ char* decodeToken(char* token) {
  *  @param file File that will be written
  */
 void printInstructions(FILE* file) {
-    char *header = "WIDTH=16;\nDEPTH=128;\n\nADDRESS_RADIX=UNS;\nDATA_RADIX=UNS;\n\nCONTENT BEGIN\n";
+    char *header = "WIDTH=16;\nDEPTH=128;\n\nADDRESS_RADIX=UNS;\nDATA_RADIX=BIN;\n\nCONTENT BEGIN\n";
     fprintf(file, "%s",header);
     Instructions *aux = instructions->next;
     while (aux != NULL) {
