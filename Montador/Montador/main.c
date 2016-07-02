@@ -5,6 +5,16 @@
 //  Created by Danilo Becke on 29/06/16.
 //  Copyright © 2016 Danilo Becke. All rights reserved.
 //
+//  As instruções devem seguir o padrao:
+//  instrucao, rx, ry
+//
+//  As constantes devem ser precedidas por #
+//
+//  Os enderecos devem (mas nao precisam) estar entre []
+//  Exemplo: ld R0, [R6]
+//
+//  Código disponível em: https://github.com/danilobecke/montadorProcessador
+//
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -159,7 +169,8 @@ char *decimal_to_binary(int n, int size)
  */
 char* formatPath(char* path) {
     char *newPath = str_replace(path, "/", "//");
-    char *finalPath = str_replace(newPath, "\\ ", " ");
+    char *intermediate = str_replace(newPath, " ", "");
+    char *finalPath = str_replace(intermediate, "\\", " ");
     return finalPath;
 
 }
@@ -239,6 +250,13 @@ void decodeConstant(char* token) {
     sprintf(constantNumber, "%03d : %s;\n",count,decoded);
 }
 
+/**
+ *  Decodes one address
+ *
+ *  @param token String to be decoded
+ *
+ *  @return Decoded string
+ */
 char* decodeAddr(char* token) {
     char *decoded = NULL;
     char *partial, *last;
