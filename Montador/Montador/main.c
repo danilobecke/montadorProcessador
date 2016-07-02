@@ -326,7 +326,7 @@ int main(int argc, const char * argv[]) {
     file = fopen(newPath, "r");
     if (file != NULL) {
         char *lineBuffer = NULL;
-        char decodedInstruction[25] = "000 : 0000000";
+        char decodedInstruction[25] = "000 : ";
         ssize_t read;
         size_t len = 0;
         //reading lines
@@ -348,7 +348,7 @@ int main(int argc, const char * argv[]) {
                 sprintf(decodedInstruction, "%s%s",decodedInstruction,decodedToken);
                 token = strtok(NULL, " ");
             }
-            sprintf(decodedInstruction, "%s;\n",decodedInstruction);
+            sprintf(decodedInstruction, "%s0000000;\n",decodedInstruction);
             insertInstruction(decodedInstruction);
             count++;
             //checks if the instruction needs a constant number
@@ -356,7 +356,7 @@ int main(int argc, const char * argv[]) {
                 insertInstruction(constantNumber);
                 isNumber = 0;
             }
-            sprintf(decodedInstruction, "%03d : 0000000",count);
+            sprintf(decodedInstruction, "%03d : ",count);
         }
     }
     fclose(file);
